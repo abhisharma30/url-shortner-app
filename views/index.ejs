@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Shortener</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1>URL Shortener</h1>
+  <form action="/shorten" method="post">
+    <label for="url">Enter URL:</label>
+    <input type="text" name="url" id="url" required>
+    <button type="submit">Shorten</button>
+  </form>
+
+  <h2>Shortened URLs</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Short URL</th>
+        <th>Original URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Display shortened URLs dynamically here -->
+      <% Object.entries(urlDatabase).forEach(([shortUrl, longUrl]) => { %>
+        <tr>
+          <td><a href="<%= shortUrl %>"><%= shortUrl %></a></td>
+          <td><%= longUrl %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</body>
+</html>
